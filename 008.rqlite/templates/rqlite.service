@@ -1,0 +1,14 @@
+[Unit]
+Description=the newben rqlite daemonset.
+After=syslog.target network.target
+
+[Service]
+User=root
+ExecStart={{BIN_DIR}}/rqlited -http-addr {{HTTP_ADDR}} -raft-addr {{RAFT_ADDR}} {{DATA_DIR}}
+Restart=always
+RestartSec=5
+StartLimitBurst=0
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
