@@ -1,0 +1,41 @@
+
+SHELL:=/bin/bash
+USER?=$(shell echo ${USER})
+ARCH=$(shell os=$(arch);if [ "${arch}" == "aarch64" ]; then echo "arm64"; else echo "amd64"; fi)
+PWD=$(shell pwd)
+IP=$(shell ip addr | grep inet | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $$2}' | awk -F/ '{print $$1}' | head -n 1)
+TEMP_DIR=buildTemp
+
+NAME?=
+
+ERR = $(error found an error!)
+
+define readme
+	@echo "使用命令"
+	@echo "make help:               使用帮助信息"
+	@echo "make download:           下载相应的安装包"
+	@echo "make install:            安装工具"
+	@echo "make uninstall:          卸载工具"
+	@echo "make clean:              清理下载残余"
+	@echo "make show:               变量展示"
+endef
+
+define DIE
+	$(error ${1})
+endef
+
+.PHONY: help download install uninstall clean show
+
+help:
+	$(call readme)
+
+show:
+	@echo "SHELL         : ${SHELL}"
+	@echo "USER          : ${USER}"
+	@echo "ARCH          : ${ARCH}"
+	@echo "PWD           : ${PWD}"
+	@echo "IP            : ${IP}"
+	@echo "NAME          : ${NAME}"
+
+clean:
+	cd ${PWD} && rm -rf ${TEMP_DIR}

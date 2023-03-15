@@ -1,0 +1,23 @@
+#!/bin/bash
+# 确保在脚步当前目录
+cd $(dirname $0)
+# 引入公共脚本
+. ./pub_script.sh
+# 脚步参数定义
+nameConf=(default: type:string desc:姓名)
+sexConf=(default: type:bool desc:性别)
+ageConf=(default: type:int desc:年龄)
+ipConf=(default:${LOCAL_IP} type:int desc:ip eg:${LOCAL_IP} required:true)
+PARAM_CONFS=(
+    ["name"]=nameConf
+    ["sex"]=sexConf
+    ["age"]=ageConf
+    ["ip"]=ipConf
+)
+# 参数解析
+ParseParams
+# 参数获取
+echo "====== value ======"
+for key in ${!PC[*]}; do
+    printf "Key: %s; Value: %s\n" "${key}" "${PC[${key}]}"
+done
