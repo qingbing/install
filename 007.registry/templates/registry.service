@@ -1,0 +1,16 @@
+
+[Unit]
+Description=the newben registry daemonset.
+After=syslog.target network.target
+
+[Service]
+User=root
+EnvironmentFile={{CONF_DIR}}/default.env
+ExecStart={{BIN_DIR}}/registry serve {{CONF_DIR}}/default.yaml
+Restart=always
+RestartSec=5
+StartLimitBurst=0
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
