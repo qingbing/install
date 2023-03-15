@@ -1,0 +1,15 @@
+
+[Unit]
+Description=the newben etcd daemonset.
+After=syslog.target network.target
+
+[Service]
+User=root
+ExecStart={{BIN_DIR}}/etcd --config-file={{CONF_DIR}}/default.conf
+Restart=always
+RestartSec=5
+StartLimitBurst=0
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
