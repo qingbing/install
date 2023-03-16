@@ -1,0 +1,16 @@
+[Unit]
+Description=the local etcd daemonset.
+After=syslog.target network.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart={{BIN_DIR}}/etcd --config-file={{INSTALL_DIR}}/conf/default.conf --cert-file={{INSTALL_DIR}}/ssl/server.pem --key-file={{INSTALL_DIR}}/ssl/server-key.pem --peer-cert-file={{INSTALL_DIR}}/ssl/server.pem --peer-key-file={{INSTALL_DIR}}/ssl/server-key.pem --trusted-ca-file={{INSTALL_DIR}}/ssl/ca.pem --peer-trusted-ca-file={{INSTALL_DIR}}/ssl/ca.pem --logger=zap
+Restart=on-failure
+RestartSec=5
+StartLimitBurst=0
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
