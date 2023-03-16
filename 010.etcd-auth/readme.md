@@ -17,7 +17,7 @@ Etcd是CoreOS基于Raft协议开发的分布式key-value存储，可用于服务
 ### 1.1 参考链接
 
 ```text
-https://blog.csdn.net/weixin_53041251/article/details/122992382
+https://blog.csdn.net/SharkVeryBusy/article/details/124828547
 ```
 
 ## 2. 命令
