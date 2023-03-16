@@ -1,10 +1,9 @@
 
 [Unit]
-Description=the newben etcd daemonset.
+Description=the local etcd daemonset.
 After=syslog.target network.target
 
 [Service]
-User=root
 ExecStart={{BIN_DIR}}/etcd --config-file={{CONF_DIR}}/default.conf
 Restart=always
 RestartSec=5
