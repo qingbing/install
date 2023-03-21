@@ -6,11 +6,8 @@ NAME=docker
 VERSION?=20.10.20
 PACKAGE=docker-${VERSION}.tgz
 # https://download.docker.com/linux/static/stable
-ifeq (${ARCH}, arm64)
-LOAD_URL=https://download.docker.com/linux/static/stable/aarch64/"${PACKAGE}"
-else
-LOAD_URL=https://download.docker.com/linux/static/stable/x86_64/"${PACKAGE}"
-endif
+S_ARCH=$(shell if [ $$(arch) == "aarch64" ]; then printf "aarch64"; else printf "x86_64"; fi;)
+LOAD_URL=https://download.docker.com/linux/static/stable/${S_ARCH}/${PACKAGE}
 
 # 引入模板
 include ${makefileTemplate}
