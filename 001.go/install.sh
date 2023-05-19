@@ -1,7 +1,7 @@
 #!/bin/bash
 # 确保在脚步当前目录
 cd $(dirname $0)
-CUR_PATH=$(PWD)
+CUR_PATH=$(pwd)
 PLUGIN_NAME=go
 # 引入公共脚本
 . ./../pub_script.sh
@@ -16,14 +16,14 @@ ParseParams
 tarFile=${PC["f"]}
 
 function remove() {
-    rm -rf ${USR_LOCAL}/go
+    rm -rf "${USR_LOCAL}"/go
     sed -i '/\/code\/go\/bin:\/usr\/local\/go\/bin/d' /etc/profile
 }
 
 function install() {
-    cd ${TEMP_DIR}
-    tar -xzvf ${tarFile}
-    mv go ${USR_LOCAL}
+    cd "${CUR_PATH}/${TEMP_DIR}" || true
+    tar -xzvf "${tarFile}"
+    mv go "${USR_LOCAL}"
 }
 
 function config() {
