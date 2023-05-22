@@ -1,7 +1,7 @@
 #!/bin/bash
 # 确保在脚步当前目录
 cd $(dirname $0)
-PLUGIN_NAME=docker
+PLUGIN_NAME=node
 # 引入公共脚本
 . ./../pub_script.sh
 # 参数解析
