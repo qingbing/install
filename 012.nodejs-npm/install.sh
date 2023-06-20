@@ -33,6 +33,7 @@ function conf()
 function installTs()
 {
     npm install -g typescript
+    ln -s "${USR_LOCAL}/node/bin/tsc" "${BIN_DIR}"
 }
 
 {
