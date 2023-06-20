@@ -30,10 +30,17 @@ function conf()
     ln -s "${USR_LOCAL}/node/bin/node" "${BIN_DIR}"
 }
 
+function installTs()
+{
+    npm install -g typescript
+}
+
 {
     set -x
     # 安装
     install
     # 配置
     conf
+    # 安装 ts
+    installTs
 }

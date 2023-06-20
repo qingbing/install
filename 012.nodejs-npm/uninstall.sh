@@ -8,6 +8,9 @@ PLUGIN_NAME=node
 ParseParams
 
 function uninstall() {
+    # 移除 ts
+    npm uninstall -g typescript
+    
     # 删除二进制(软连接)
     rm -rf ${BIN_DIR}/npm
     rm -rf ${BIN_DIR}/node
